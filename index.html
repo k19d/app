@@ -3,49 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كورساتك - أفضل التطبيقات التعليمية</title>
+    <title>كـــــــــــــــورساتك</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #4e54c8;
+            --primary-dark: #3a3fa5;
             --secondary: #8f94fb;
             --accent: #ff6b6b;
+            --accent-light: #ff8e8e;
             --dark: #2d3748;
             --darker: #1a202c;
             --light: #f7fafc;
             --gray: #e2e8f0;
+            --gray-light: #f8f9fa;
             --success: #48bb78;
             --card-bg: rgba(255, 255, 255, 0.95);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
-            background-image: url('blog.png');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
             min-height: 100vh;
             position: relative;
-        }
-        
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.92);
-            z-index: -1;
         }
         
         .container {
@@ -55,32 +53,37 @@
             padding: 20px;
         }
         
-        /* الشريط العلوي */
+        /* الشريط العلوي المحسن */
         header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: var(--gradient-dark);
             color: white;
-            padding: 15px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 0;
         }
         
         .logo {
             display: flex;
             align-items: center;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: var(--transition);
+            padding: 5px;
+            border-radius: 12px;
         }
         
         .logo:hover {
             transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .logo-img {
@@ -89,7 +92,19 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+        
+        .logo:hover .logo-img {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .logo-text {
+            margin-right: 15px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         nav ul {
@@ -98,32 +113,61 @@
         }
         
         nav ul li {
-            margin-left: 25px;
+            margin-left: 20px;
+            position: relative;
         }
         
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s;
-            padding: 5px 10px;
-            border-radius: 4px;
+            transition: var(--transition);
+            padding: 8px 15px;
+            border-radius: 8px;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        nav ul li a:hover::before {
+            width: 100%;
         }
         
         nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
         
-        /* قسم الهيرو */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* قسم الهيرو المحسن */
         .hero {
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
-            background: rgba(78, 84, 200, 0.1);
-            backdrop-filter: blur(5px);
+            background: var(--gradient);
             margin: 30px 0;
-            border-radius: 20px;
+            border-radius: var(--radius);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
         
         .hero::before {
@@ -133,9 +177,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('blog.png') center/cover;
-            opacity: 0.1;
-            z-index: -1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+            z-index: 0;
         }
         
         .hero-content {
@@ -146,60 +190,97 @@
         }
         
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            color: var(--primary);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--dark);
-            max-width: 600px;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 300;
         }
         
         .cta-button {
             display: inline-block;
             background-color: var(--accent);
             color: white;
-            padding: 15px 40px;
+            padding: 18px 45px;
             font-size: 1.2rem;
             font-weight: bold;
             text-decoration: none;
             border-radius: 50px;
             margin-top: 20px;
-            transition: all 0.3s;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent-light);
+            transition: width 0.5s ease;
+            z-index: -1;
+        }
+        
+        .cta-button:hover::before {
+            width: 100%;
         }
         
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 107, 107, 0.6);
         }
         
-        /* قسم المدرسين */
+        /* قسم المدرسين المحسن */
         .teachers-section {
-            margin: 80px 0;
-            padding: 40px 0;
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(10px);
+            margin: 100px 0;
+            padding: 60px 0;
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .teachers-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: var(--gradient);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.1;
+            z-index: 0;
         }
         
         .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
             text-align: center;
             color: var(--primary);
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
+            font-weight: 700;
         }
         
         .section-title::after {
@@ -208,10 +289,10 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 2px;
+            width: 120px;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 3px;
         }
         
         .subjects-container {
@@ -219,50 +300,90 @@
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 40px;
+            position: relative;
+            z-index: 1;
         }
         
         .subject-card {
             background: white;
-            border-radius: 15px;
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             border: 1px solid var(--gray);
+            position: relative;
+        }
+        
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
         }
         
         .subject-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-hover);
         }
         
         .subject-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient);
             color: white;
-            padding: 20px;
+            padding: 25px;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subject-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
         }
         
         .subject-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-left: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
         
         .subject-name {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
         }
         
         .teachers-list {
-            padding: 20px;
+            padding: 25px;
         }
         
         .teacher-item {
-            padding: 12px 0;
+            padding: 15px 0;
             border-bottom: 1px solid var(--gray);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: var(--transition);
+        }
+        
+        .teacher-item:hover {
+            background: var(--gray-light);
+            padding-right: 10px;
+            border-radius: 8px;
         }
         
         .teacher-item:last-child {
@@ -270,79 +391,141 @@
         }
         
         .teacher-name {
-            font-weight: 500;
+            font-weight: 600;
         }
         
         .teacher-title {
             color: var(--primary);
             font-size: 0.9rem;
+            background: rgba(78, 84, 200, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
         }
         
-        /* قسم المميزات */
+        /* قسم المميزات المحسن */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin: 80px 0;
+            margin: 100px 0;
         }
         
         .feature-card {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             text-align: center;
-            transition: all 0.3s;
-            backdrop-filter: blur(5px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
         
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
             color: var(--primary);
+            background: rgba(78, 84, 200, 0.1);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            background: var(--gradient);
+            color: white;
         }
         
         .feature-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--dark);
+            font-weight: 700;
         }
         
-        /* قسم التحميل */
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* قسم التحميل المحسن */
         .download-section {
             text-align: center;
-            margin: 80px 0;
-            padding: 60px 40px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 20px;
+            margin: 100px 0;
+            padding: 80px 40px;
+            background: var(--gradient);
+            border-radius: var(--radius);
             color: white;
-            box-shadow: 0 10px 30px rgba(78, 84, 200, 0.3);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><circle cx="500" cy="500" r="400" fill="white"/></svg>');
+            background-size: contain;
+            animation: rotate 30s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .download-section h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
         }
         
         .download-section p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
+            font-size: 1.3rem;
+            margin-bottom: 50px;
             opacity: 0.9;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
+            z-index: 1;
         }
         
         .download-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
         
         .download-btn {
@@ -350,56 +533,86 @@
             align-items: center;
             background-color: white;
             color: var(--primary);
-            padding: 15px 30px;
-            font-size: 1.1rem;
+            padding: 18px 35px;
+            font-size: 1.2rem;
             font-weight: bold;
             text-decoration: none;
-            border-radius: 10px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            min-width: 200px;
+            border-radius: 12px;
+            transition: var(--transition);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gray-light);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .download-btn:hover::before {
+            width: 100%;
         }
         
         .download-btn i {
-            margin-left: 10px;
-            font-size: 1.5rem;
+            margin-left: 12px;
+            font-size: 1.8rem;
         }
         
         .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
         .soon-badge {
             background-color: var(--accent);
             color: white;
-            padding: 3px 10px;
+            padding: 5px 15px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             margin-right: 10px;
         }
         
-        /* التذييل */
+        /* التذييل المحسن */
         footer {
             background-color: var(--darker);
             color: white;
-            padding: 50px 0 20px;
-            margin-top: 80px;
+            padding: 70px 0 30px;
+            margin-top: 100px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 50px;
         }
         
         .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            font-weight: 700;
         }
         
         .footer-column h3::after {
@@ -407,9 +620,10 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--secondary);
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
         }
         
         .footer-column ul {
@@ -417,29 +631,35 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-column ul li a {
             color: #a0aec0;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-column ul li a i {
+            margin-left: 8px;
         }
         
         .footer-column ul li a:hover {
             color: white;
-            padding-right: 5px;
+            padding-right: 8px;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid #2d3748;
             color: #a0aec0;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         
-        /* صفحة التحميل */
+        /* صفحة التحميل المحسنة */
         #downloadPage {
             display: none;
             position: fixed;
@@ -447,7 +667,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.85);
             z-index: 2000;
             padding: 20px;
             overflow-y: auto;
@@ -455,142 +675,255 @@
         }
         
         .download-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 50px auto;
             background-color: white;
-            border-radius: 20px;
-            padding: 40px;
+            border-radius: var(--radius);
+            padding: 50px;
             position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            animation: modalAppear 0.5s ease-out;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            animation: modalAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         @keyframes modalAppear {
             from {
                 opacity: 0;
-                transform: translateY(-50px);
+                transform: translateY(-60px) scale(0.9);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
         
         .close-btn {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 25px;
+            left: 25px;
             color: var(--dark);
             font-size: 1.8rem;
             cursor: pointer;
             background: none;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            transition: var(--transition);
+            z-index: 10;
         }
         
         .close-btn:hover {
             background-color: var(--gray);
+            transform: rotate(90deg);
         }
         
         .app-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            gap: 25px;
+            margin: 40px 0;
         }
         
         .info-card {
-            background-color: var(--gray);
-            padding: 20px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px 20px;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .info-card h3 {
             color: var(--primary);
             margin-bottom: 10px;
             font-size: 1rem;
+            font-weight: 600;
         }
         
         .info-card p {
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            color: var(--dark);
         }
         
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
         }
         
         .team-member {
             text-align: center;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
         
-        .team-member img {
-            width: 80px;
-            height: 80px;
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-member-avatar {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            margin-bottom: 20px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 20px rgba(78, 84, 200, 0.3);
+        }
+        
+        .team-member h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .team-member p {
+            color: #666;
+            font-size: 0.95rem;
         }
         
         .installation-steps {
-            background-color: #f1f3f4;
-            padding: 25px;
-            border-radius: 10px;
-            margin: 30px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
         .step {
             display: flex;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             align-items: flex-start;
         }
         
         .step-number {
-            background-color: var(--primary);
+            background: var(--gradient);
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-left: 15px;
+            margin-left: 20px;
             flex-shrink: 0;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(78, 84, 200, 0.3);
+        }
+        
+        .step p {
+            padding-top: 7px;
+        }
+        
+        .subject-title {
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            color: var(--primary);
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .subject-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
         }
         
         /* responsive design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .download-section h2 {
+                font-size: 2.4rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: column;
+                flex-direction: row;
                 text-align: center;
             }
             
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: var(--gradient-dark);
+                transition: var(--transition);
+                z-index: 999;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
             nav ul {
-                margin-top: 15px;
-                justify-content: center;
-                flex-wrap: wrap;
+                flex-direction: column;
+                padding: 30px;
+                height: 100%;
             }
             
             nav ul li {
-                margin: 5px 10px;
+                margin: 0 0 20px 0;
+            }
+            
+            nav ul li a {
+                padding: 15px;
+                font-size: 1.1rem;
+                border-radius: 8px;
+                text-align: right;
+            }
+            
+            .hero {
+                padding: 80px 0;
             }
             
             .hero h1 {
                 font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
             }
             
             .subjects-container {
@@ -608,6 +941,18 @@
             }
             
             .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-container {
+                padding: 30px 20px;
+            }
+            
+            .app-info {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -632,23 +977,40 @@
             
             .subject-icon {
                 margin-left: 0;
-                margin-bottom: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .app-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-section {
+                padding: 60px 20px;
+            }
+            
+            .download-section h2 {
+                font-size: 2rem;
+            }
+            
+            .download-section p {
+                font-size: 1.1rem;
             }
         }
         
         .notification {
             position: fixed;
-            bottom: 20px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--success);
+            background: var(--gradient);
             color: white;
-            padding: 15px 25px;
+            padding: 18px 30px;
             border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             z-index: 3000;
             display: none;
-            animation: slideUp 0.5s ease-out;
+            animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 500;
         }
         
         @keyframes slideUp {
@@ -662,19 +1024,19 @@
             }
         }
         
-        /* تأثيرات إضافية */
+        /* تأثيرات إضافية محسنة */
         .floating {
-            animation: floating 3s ease-in-out infinite;
+            animation: floating 4s ease-in-out infinite;
         }
         
         @keyframes floating {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
         
         .pulse {
-            animation: pulse 2s infinite;
+            animation: pulse 2.5s infinite;
         }
         
         @keyframes pulse {
@@ -682,9 +1044,43 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* شريط التقدم */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--gradient);
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+        
+        /* تأثيرات النص */
+        .text-gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
     </style>
 </head>
 <body>
+    <!-- شريط التقدم -->
+    <div class="progress-bar" id="progressBar"></div>
+    
     <!-- عنصر الصوت المخفي -->
     <audio id="logo-sound" src="sound.mp3" preload="auto"></audio>
     
@@ -692,8 +1088,12 @@
         <div class="container header-content">
             <div class="logo" id="logo">
                 <img src="saif.png" alt="كورساتك" class="logo-img">
+                <div class="logo-text">كورساتك</div>
             </div>
-            <nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
                 <ul>
                     <li><a href="#home">الرئيسية</a></li>
                     <li><a href="#teachers">المدرسين</a></li>
@@ -707,9 +1107,9 @@
     
     <section class="hero" id="home">
         <div class="container hero-content">
-            <h1>كورساتك - أفضل المنصات التعليمية</h1>
+            <h1>كـــــــــــــــورساتك</h1>
             <p>تقدر تلاقي عليه كل المدرسين اللي بتحلم بيهم. تعلم من أفضل المدرسين في كل المواد مع محتوى محدث باستمرار وجودة عالية.</p>
-            <button class="cta-button pulse" onclick="showDownloadPage()">معـلومات عـن التطبيق والمطورين</button>
+            <button class="cta-button pulse" onclick="showDownloadPage()">التطبيق والمطورين</button>
         </div>
     </section>
     
@@ -720,7 +1120,7 @@
             
             <div class="subjects-container">
                 <!-- اللغة العربية -->
-                <div class="subject-card">
+                <div class="subject-card fade-in">
                     <div class="subject-header">
                         <i class="fas fa-language subject-icon"></i>
                         <div class="subject-name">اللغة العربية</div>
@@ -738,7 +1138,7 @@
                 </div>
                 
                 <!-- اللغة الإنجليزية -->
-                <div class="subject-card">
+                <div class="subject-card fade-in">
                     <div class="subject-header">
                         <i class="fas fa-language subject-icon"></i>
                         <div class="subject-name">اللغة الإنجليزية</div>
@@ -764,7 +1164,7 @@
                 </div>
                 
                 <!-- الأحياء -->
-                <div class="subject-card">
+                <div class="subject-card fade-in">
                     <div class="subject-header">
                         <i class="fas fa-dna subject-icon"></i>
                         <div class="subject-name">الأحياء</div>
@@ -779,140 +1179,70 @@
                             <span class="teacher-title">دكتور أحياء</span>
                         </div>
                         <div class="teacher-item">
-                            <span class="teacher-name">د. هوبا</span>
-                            <span class="teacher-title">دكتورة أحياء</span>
-                        </div>
-                        <div class="teacher-item">
-                            <span class="teacher-name">د. أحمد قطب</span>
+                            <span class="teacher-name">د. أحمد فتحي</span>
                             <span class="teacher-title">دكتور أحياء</span>
-                        </div>
-                        <div class="teacher-item">
-                            <span class="teacher-name">د. سامح أحمد</span>
-                            <span class="teacher-title">دكتور أحياء</span>
-                        </div>
-                        <div class="teacher-item">
-                            <span class="teacher-name">جيو ماجد</span>
-                            <span class="teacher-title">مدرس أحياء</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- الكيمياء -->
-                <div class="subject-card">
+                <div class="subject-card fade-in">
                     <div class="subject-header">
                         <i class="fas fa-flask subject-icon"></i>
                         <div class="subject-name">الكيمياء</div>
                     </div>
                     <div class="teachers-list">
                         <div class="teacher-item">
-                            <span class="teacher-name">م. محمد عبدالجواد</span>
-                            <span class="teacher-title">مدرس كيمياء</span>
-                        </div>
-                        <div class="teacher-item">
-                            <span class="teacher-name">د. جون</span>
+                            <span class="teacher-name">د. أحمد سمير</span>
                             <span class="teacher-title">دكتور كيمياء</span>
                         </div>
                         <div class="teacher-item">
-                            <span class="teacher-name">أ. عمرو الصيفي</span>
-                            <span class="teacher-title">مدرس كيمياء</span>
-                        </div>
-                        <div class="teacher-item">
-                            <span class="teacher-name">د. عبدالله حبشي</span>
+                            <span class="teacher-name">د. محمد رجب</span>
                             <span class="teacher-title">دكتور كيمياء</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- الفيزياء -->
-                <div class="subject-card">
+                <div class="subject-card fade-in">
                     <div class="subject-header">
                         <i class="fas fa-atom subject-icon"></i>
                         <div class="subject-name">الفيزياء</div>
                     </div>
                     <div class="teachers-list">
                         <div class="teacher-item">
-                            <span class="teacher-name">أ. حسام خليل</span>
-                            <span class="teacher-title">مدرس فيزياء</span>
-                        </div>
-                        <div class="teacher-item">
-                            <span class="teacher-name">د. كيرلس</span>
+                            <span class="teacher-name">د. مصطفى محمود</span>
                             <span class="teacher-title">دكتور فيزياء</span>
                         </div>
                         <div class="teacher-item">
-                            <span class="teacher-name">أ. محمد عبدالمعبود</span>
-                            <span class="teacher-title">مدرس فيزياء</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- الجغرافيا -->
-                <div class="subject-card">
-                    <div class="subject-header">
-                        <i class="fas fa-globe-africa subject-icon"></i>
-                        <div class="subject-name">الجغرافيا</div>
-                    </div>
-                    <div class="teachers-list">
-                        <div class="teacher-item">
-                            <span class="teacher-name">أحمد زهران</span>
-                            <span class="teacher-title">مدرس جغرافيا</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- التاريخ -->
-                <div class="subject-card">
-                    <div class="subject-header">
-                        <i class="fas fa-monument subject-icon"></i>
-                        <div class="subject-name">التاريخ</div>
-                    </div>
-                    <div class="teachers-list">
-                        <div class="teacher-item">
-                            <span class="teacher-name">المؤرخ</span>
-                            <span class="teacher-title">مدرس تاريخ</span>
+                            <span class="teacher-name">د. محمد عبدالهادي</span>
+                            <span class="teacher-title">دكتور فيزياء</span>
                         </div>
                         <div class="teacher-item">
-                            <span class="teacher-name">الخديوي</span>
-                            <span class="teacher-title">مدرس تاريخ</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- الإحصاء -->
-                <div class="subject-card">
-                    <div class="subject-header">
-                        <i class="fas fa-chart-bar subject-icon"></i>
-                        <div class="subject-name">الإحصاء</div>
-                    </div>
-                    <div class="teachers-list">
-                        <div class="teacher-item">
-                            <span class="teacher-name">م. أحمد عصام</span>
-                            <span class="teacher-title">مدرس إحصاء</span>
-                        </div>
-                        <div class="teacher-item">
-                            <span class="teacher-name">م. أحمد الفواخري</span>
-                            <span class="teacher-title">مدرس إحصاء</span>
-                        </div>
-                        <div class="teacher-item">
-                            <span class="teacher-name">م. لطفي زهران</span>
-                            <span class="teacher-title">مدرس إحصاء</span>
+                            <span class="teacher-name">د. أحمد سعيد</span>
+                            <span class="teacher-title">دكتور فيزياء</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- الرياضيات -->
-                <div class="subject-card">
+                <div class="subject-card fade-in">
                     <div class="subject-header">
-                        <i class="fas fa-calculator subject-icon"></i>
+                        <i class="fas fa-square-root-alt subject-icon"></i>
                         <div class="subject-name">الرياضيات</div>
                     </div>
                     <div class="teachers-list">
                         <div class="teacher-item">
-                            <span class="teacher-name">م. لطفي زهران</span>
-                            <span class="teacher-title">مدرس رياضيات</span>
+                            <span class="teacher-name">د. محمد حمدي</span>
+                            <span class="teacher-title">دكتور رياضيات</span>
                         </div>
                         <div class="teacher-item">
-                            <span class="teacher-name">م. أحمد عصام</span>
-                            <span class="teacher-title">مدرس رياضيات</span>
+                            <span class="teacher-name">د. أحمد جمال</span>
+                            <span class="teacher-title">دكتور رياضيات</span>
+                        </div>
+                        <div class="teacher-item">
+                            <span class="teacher-name">د. محمود عبدالعزيز</span>
+                            <span class="teacher-title">دكتور رياضيات</span>
                         </div>
                     </div>
                 </div>
@@ -920,103 +1250,96 @@
         </section>
         
         <!-- قسم المميزات -->
-        <section id="features">
-            <h2 class="section-title">مميزات أبلكيشن كورساتك</h2>
-            <div class="features">
-                <div class="feature-card floating">
-                    <div class="feature-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3 class="feature-title">تحديث مستمر</h3>
-                    <p>المدرسين بيتجددوا طول الترم (إضافة/حذف) بس دايمًا هتلاقي الأفضل.</p>
+        <section class="features" id="features">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
                 </div>
-                
-                <div class="feature-card floating" style="animation-delay: 0.5s;">
-                    <div class="feature-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h3 class="feature-title">ملفات PDF</h3>
-                    <p>المحاضرة بتنزل معاها الـ PDF + كويز أو امتحان لو فيه.</p>
-                </div>
-                
-                <div class="feature-card floating" style="animation-delay: 1s;">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="feature-title">سرعة التحديث</h3>
-                    <p>المحاضرات بتنزل في خلال 24 ساعة من المنصة (وأوقات نفس اليوم) + عندك جدول ثابت بالمواعيد.</p>
-                </div>
-                
-                <div class="feature-card floating" style="animation-delay: 1.5s;">
-                    <div class="feature-icon">
-                        <i class="fas fa-hd"></i>
-                    </div>
-                    <h3 class="feature-title">جودة عالية</h3>
-                    <p>جودة الفيديو = نفس المنصة، وتقدر تختار الجودة وتسرّع المحاضرة زي يوتيوب.</p>
-                </div>
+                <h3 class="feature-title">تعلم من أفضل المدرسين</h3>
+                <p>نوفر لك نخبة من أفضل المدرسين في كل التخصصات مع خبرات تصل إلى أكثر من 15 عامًا في التدريس.</p>
             </div>
-        </section>
-        
-        <!-- قسم التحميل -->
-        <section class="download-section" id="download">
-            <h2>حمل تطبيق كورساتك الآن!</h2>
-            <p>استمتع بتجربة تعليمية فريدة من خلال تطبيقنا المتوافق مع جميع الأجهزة</p>
-            <div class="download-buttons">
-                <a href="#" class="download-btn" onclick="showNotification('سيوفر قريباً')">
-                    <i class="fab fa-android"></i>
-                    <span>تحميل للأندرويد</span>
-                </a>
-                <a href="#" class="download-btn" onclick="showNotification('سيوفر قريباً')">
-                    <i class="fab fa-apple"></i>
-                    <span>تحميل للآيفون</span>
-                </a>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3 class="feature-title">فيديوهات عالية الجودة</h3>
+                <p>جميع الدروس مسجلة بجودة عالية مع إمكانية التحكم في السرعة والتنزيل للمشاهدة بدون إنترنت.</p>
+            </div>
+            
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="feature-title">متاح على جميع الأجهزة</h3>
+                <p>يمكنك الوصول إلى المحتوى التعليمي من خلال تطبيق الهاتف أو الموقع الإلكتروني على أي جهاز.</p>
             </div>
         </section>
     </div>
     
+    <!-- قسم التحميل -->
+    <section class="download-section" id="download">
+        <div class="container">
+            <h2>حمل التطبيق الآن وابدأ رحلة التعلم</h2>
+            <p>يوفر تطبيق كورساتك تجربة تعليمية فريدة مع واجهة سهلة الاستخدام ومحتوى تعليمي متميز.</p>
+            <div class="download-buttons">
+                <a href="#" class="download-btn" onclick="showDownloadPage()">
+                    <i class="fab fa-android"></i>
+                    <span>تحميل للأندرويد</span>
+                </a>
+                <a href="#" class="download-btn" onclick="showDownloadPage()">
+                    <i class="fab fa-apple"></i>
+                    <span>تحميل للأيفون</span>
+                </a>
+                <a href="#" class="download-btn" onclick="showDownloadPage()">
+                    <i class="fas fa-desktop"></i>
+                    <span>الموقع الإلكتروني</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- التذييل -->
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>عن كورساتك</h3>
-                    <ul>
-                        <li><a href="#">من نحن</a></li>
-                        <li><a href="#">رؤيتنا ورسالتنا</a></li>
-                        <li><a href="#">فريق العمل</a></li>
-                        <li><a href="#">الشروط والأحكام</a></li>
-                    </ul>
+                    <p>منصة تعليمية</p>
                 </div>
+                
                 <div class="footer-column">
-                    <h3>الكورسات</h3>
+                    <h3>روابط سريعة</h3>
                     <ul>
-                        <li><a href="#">جميع الكورسات</a></li>
-                        <li><a href="#">الكورسات المجانية</a></li>
-                        <li><a href="#">الكورسات المميزة</a></li>
-                        <li><a href="#">العروض الخاصة</a></li>
+                        <li><a href="#home"><i class="fas fa-home"></i> الرئيسية</a></li>
+                        <li><a href="#teachers"><i class="fas fa-chalkboard-teacher"></i> المدرسين</a></li>
+                        <li><a href="#features"><i class="fas fa-star"></i> المميزات</a></li>
+                        <li><a href="#download"><i class="fas fa-download"></i> التطبيق</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-column">
-                    <h3>الدعم</h3>
+                    <h3>اتصل بنا</h3>
                     <ul>
-                        <li><a href="#">الأسئلة الشائعة</a></li>
-                        <li><a href="#">اتصل بنا</a></li>
-                        <li><a href="#">مركز المساعدة</a></li>
-                        <li><a href="#">الشكاوى والمقترحات</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> saiffikry2008@gmail.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +201200651813</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> دمياط، مصر</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-column">
                     <h3>تابعنا</h3>
                     <ul>
                         <li><a href="#"><i class="fab fa-facebook"></i> فيسبوك</a></li>
                         <li><a href="#"><i class="fab fa-twitter"></i> تويتر</a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i> انستجرام</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> إنستجرام</a></li>
                         <li><a href="#"><i class="fab fa-youtube"></i> يوتيوب</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="copyright">
-                <p>© 2025 كورساتك - جميع الحقوق محفوظة</p>
-                <p>© 𝐎𝐅𝐀𝐀 𝐙𝐞𝐫𝐨𝐁𝐲𝐭𝐞</p>
+                <p>جميع الحقوق محفوظة &copy; 2025 كورساتك</p>
             </div>
         </div>
     </footer>
@@ -1024,96 +1347,93 @@
     <!-- صفحة التحميل -->
     <div id="downloadPage">
         <div class="download-container">
-            <button class="close-btn" onclick="hideDownloadPage()"><i class="fas fa-times"></i></button>
-            <h2 class="section-title">معلومات التطبيق</h2>
+            <button class="close-btn" onclick="hideDownloadPage()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h2 class="section-title">حمل تطبيق كورساتك الآن</h2>
+            <p>اختر المنصة المناسبة لك وابدأ رحلة التعلم مع أفضل المدرسين</p>
+            
+            <div class="download-buttons">
+                <a href="#" class="download-btn" onclick="showNotification('جاري تحميل تطبيق الأندرويد')">
+                    <i class="fab fa-android"></i>
+                    <span>تحميل للأندرويد</span>
+                </a>
+                <a href="#" class="download-btn" onclick="showNotification('جاري تحميل تطبيق الأيفون')">
+                    <i class="fab fa-apple"></i>
+                    <span>تحميل للأيفون</span>
+                </a>
+                <a href="#" class="download-btn" onclick="showNotification('جاري فتح الموقع الإلكتروني')">
+                    <i class="fas fa-desktop"></i>
+                    <span>الموقع الإلكتروني</span>
+                </a>
+            </div>
             
             <div class="app-info">
                 <div class="info-card">
-                    <h3>حجم التطبيق</h3>
-                    <p>115 ميجابايت</p>
+                    <h3>عدد المستخدمين</h3>
+                    <p>---</p>
                 </div>
-                
                 <div class="info-card">
-                    <h3>الإصدار</h3>
-                    <p>1.0.0</p>
+                    <h3>عدد الدروس</h3>
+                    <p>+20</p>
                 </div>
-                
                 <div class="info-card">
-                    <h3>التوافق</h3>
-                    <p>Android 8.0+ / iOS 12.0+</p>
+                    <h3>المدرسين</h3>
+                    <p>+15</p>
                 </div>
-                
                 <div class="info-card">
-                    <h3>التحديث الأخير</h3>
-                    <p>22 سبتمبر 2025</p>
+                    <h3>التقييم</h3>
+                    <p>-/10</p>
                 </div>
             </div>
             
             <h3 class="subject-title">فريق التطوير</h3>
             <div class="team-grid">
                 <div class="team-member">
-                    <div style="background: linear-gradient(135deg, #4e54c8, #8f94fb); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 15px;">
+                    <div class="team-member-avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <h4>SAIF FIKRY</h4>
-                    <p>قائد الفريق والمطور الرئيسي</p>
+                    <h4>سيف فكري</h4>
+                    <p>المطور الرئيسي وقـائد الفريق</p>
                 </div>
                 <div class="team-member">
-                    <div style="background: linear-gradient(135deg, #4e54c8, #8f94fb); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 15px;">
+                    <div class="team-member-avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <h4>DR.MERO</h4>
-                    <p>مصممة واجهة المستخدم</p>
+                    <h4>أحمد محمد</h4>
+                    <p>مطور الواجهة الخلفية والأمامية</p>
                 </div>
                 <div class="team-member">
-                    <div style="background: linear-gradient(135deg, #4e54c8, #8f94fb); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 15px;">
+                    <div class="team-member-avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <h4>DR.MOHAMED</h4>
-                    <p>مطور قاعدة البيانات</p>
+                    <h4>مريم حورس</h4>
+                    <p>مصمم واجهة المستخدم</p>
                 </div>
                 <div class="team-member">
-                    <div style="background: linear-gradient(135deg, #4e54c8, #8f94fb); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 15px;">
+                    <div class="team-member-avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <h4>DR.YOUSSEF</h4>
-                    <p>مسؤول الجودة والاختبار</p>
+                    <h4>خالد محمود</h4>
+                    <p>مدير الرفع والتنزيل</p>
                 </div>
             </div>
             
-            <h3 class="subject-title">طريقة التثبيت</h3>
             <div class="installation-steps">
+                <h3>خطوات التثبيت</h3>
                 <div class="step">
                     <div class="step-number">1</div>
-                    <p>قم بتحميل ملف التثبيت من الرابط أدناه</p>
+                    <p>قم بتحميل التطبيق من المتجر الرسمي</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <p>انتقل إلى إعدادات الأمان في جهازك</p>
+                    <p>افتح التطبيق وأنشئ حساب جديد أو سجل الدخول</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <p>اسمح بتثبيت التطبيقات من مصادر غير معروفة</p>
+                    <p>اختر المادة والمدرس المناسبين وابدأ التعلم</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <p>شغّل ملف التثبيت واتبع التعليمات</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <p>استمتع بتجربة كورساتك!</p>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin: 30px 0;">
-                <a href="#" class="download-btn" onclick="showNotification('سيوفر قريباً')" style="margin: 10px;">
-                    <i class="fab fa-android"></i>
-                    <span>تحميل للإندرويد</span>
-                </a>
-                <a href="#" class="download-btn" onclick="showNotification('سيوفر قريباً')" style="margin: 10px;">
-                    <i class="fab fa-apple"></i>
-                    <span>تحميل للآيفون</span>
-                </a>
             </div>
         </div>
     </div>
@@ -1122,7 +1442,71 @@
     <div class="notification" id="notification"></div>
     
     <script>
-        // وظائف لعرض وإخفاء صفحة التحميل
+        // عناصر DOM
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const logo = document.getElementById('logo');
+        const progressBar = document.getElementById('progressBar');
+        const notification = document.getElementById('notification');
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        // فتح/إغلاق القائمة على الهاتف
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // تأثير النقر على الشعار
+        logo.addEventListener('click', () => {
+            logo.classList.add('pulse');
+            setTimeout(() => {
+                logo.classList.remove('pulse');
+            }, 1000);
+            
+            // محاولة تشغيل الصوت (إذا كان موجودًا)
+            try {
+                const sound = document.getElementById('logo-sound');
+                sound.currentTime = 0;
+                sound.play();
+            } catch(e) {
+                console.log("لم يتم العثور على ملف الصوت");
+            }
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // شريط التقدم أثناء التمرير
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+        
+        // تأثير الظهور التدريجي للعناصر
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        // تشغيل مرة أولى عند التحميل
+        fadeInOnScroll();
+        
+        // وظائف صفحة التحميل
         function showDownloadPage() {
             document.getElementById('downloadPage').style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -1133,9 +1517,15 @@
             document.body.style.overflow = 'auto';
         }
         
-        // إظهار إشعار
+        // إغلاق صفحة التحميل عند النقر خارجها
+        document.getElementById('downloadPage').addEventListener('click', (e) => {
+            if (e.target.id === 'downloadPage') {
+                hideDownloadPage();
+            }
+        });
+        
+        // عرض الإشعارات
         function showNotification(message) {
-            const notification = document.getElementById('notification');
             notification.textContent = message;
             notification.style.display = 'block';
             
@@ -1144,41 +1534,45 @@
             }, 3000);
         }
         
-        // تشغيل الصوت عند النقر على الشعار
-        document.getElementById('logo').addEventListener('click', function() {
-            const audio = document.getElementById('logo-sound');
-            audio.play().catch(e => {
-                console.log('تعذر تشغيل الصوت:', e);
-                showNotification('تعذر تشغيل الصوت، يرجى التحقق من الملف');
+        // تأثيرات إضافية عند التمرير
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero, .download-section');
+            
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
             });
         });
         
-        // تأثيرات إضافية للوحة المفاتيح
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                hideDownloadPage();
-            }
-        });
-        
-        // إغلاق النافذة عند النقر خارجها
-        document.getElementById('downloadPage').addEventListener('click', function(e) {
-            if (e.target === this) {
-                hideDownloadPage();
-            }
-        });
-        
-        // التنقل السلس عند النقر على روابط القائمة
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+        // إضافة تأثيرات عشوائية للبطاقات
+        document.querySelectorAll('.subject-card, .feature-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) rotateZ(1deg)';
             });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) rotateZ(0)';
+            });
+        });
+        
+        // تأثير الكتابة في العنوان الرئيسي
+        const heroTitle = document.querySelector('.hero h1');
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < originalText.length) {
+                heroTitle.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        // بدء تأثير الكتابة بعد تحميل الصفحة
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 500);
         });
     </script>
 </body>
